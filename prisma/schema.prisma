@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Hospital {
+  id                     String   @id @default(uuid())
+  name                   String   @unique
+  type                   String?
+  phoneNumber            String?  @map("phone_number")
+  telephoneNumber        String   @map("telephone_number")
+  email                  String?  @unique
+  createdAt              DateTime @default(now()) @map("created_at")
+  updatedAt              DateTime @updatedAt @map("updated_at")
+  image                  String?
+  code                   String?
+  hciAccreditationNumber String?  @map("hci_accreditation_number")
+  phicAccreditationName  String?  @map("phic_accreditation_name")
+  phicCode               String?  @map("phic_code")
+  phicKey                String?  @map("phic_key")
+  address                Json
+}
